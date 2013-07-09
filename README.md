@@ -1,16 +1,17 @@
 BOHOO
 =====
-Install :
 
+Install :
+=====
 south
 PIL (Pillow)
-====
 
+=====
 Settings.py:
-
+=====
 Bohoo.settings
-======
 
+=======
 Mail setting:
 
 EMAIL_HOST='smtp.qq.com'  
