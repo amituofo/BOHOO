@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+{% load timeformat %}
+<html lang="zh-CN" class="ua-windows ua-webkit"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+    
+    我的群组话题
+
+</title>
+      
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="">
+    
+    <script>var _head_start = new Date();</script>
+    <script src="/static/js/packed_jquery.min6301986802.js"></script>
+    <script src="/static/js/jquery-1.8.0.min.js"></script>
+	<script src="/static/js/jquery.artDialog.js?skin=twitter"></script>
+    <script src="/static/js/packed_douban2999726295.js"></script>
+    <script src="/static/js/index.js"></script>
+    <link href="/static/css/packed_douban9859329871.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+    
+        
+.topic-nav { float:right; margin-top:-35px; color:#666;}
+.olt thead th { padding:3px; }
+.olt thead th.right { text-align:right; }
+.olt tbody td { padding:3px; }
+.nav-back { font-size:14px; }
+
+.endless_page_link{
+	font: 14px Arial,Helvetica,sans-serif;
+	color: #aaa;
+	margin: 20px 0;
+	line-height: 150%;
+	text-align: center;
+	padding: 0 4px;
+margin: 2px;
+}
+.endless_page_current{
+	color: #fff;
+background: #83bf73;
+} 
+
+    </style>
+    
+<link rel="stylesheet" href="/static/css/packed_my_group381521399.css">
+
+    <link rel="stylesheet" href="/static/css/64915257e963418d.css">
+    <script>
+	var category  = "{{category}}";
+	var image  = "{{image}}";
+	$(document).ready(function(){
+		$("#inp-query").click(function(){
+			console.log($("label[for='inp-query']"))
+			$("label[for='inp-query']")[0].innerText = ""
+		})
+	})
+	</script>
+
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	</head>
+<body>
+  
+    
+    <script type="text/javascript">var _body_start = new Date();</script>
+
+<div id="db-global-nav" class="global-nav">
+  <div class="bd">
+
+<div class="top-nav-info">
+    <span class="perf-metric"><!-- _performtips_ --></span>
+    
+     <ul>
+       <li><a href="#">豆邮</a></li>
+       <li class="nav-user-account">
+       <a target="_blank" href="#" class="bn-more" rel="off"><span>{{ user.nickname }}的帐号</span><span class="arrow"></span></a>
+       <div class="more-items">
+      <table cellpadding="0" cellspacing="0">
+            <tbody><tr><td><a href="#">我的豆瓣</a></td></tr>
+            <tr><td><a target="_blank" href="#">我的帐号</a></td></tr>
+            <tr><td><a href="/group/logout">退出</a></td></tr>
+         </tbody></table>
+       </div>
+
+       </li>
+     </ul>
+</div>
+
+    <div class="top-nav-reminder">
+        <a href="#" class="lnk-remind">提醒
+        </a>
+    <div id="top-nav-notimenu" class="more-items">
+      <div class="bd">
+          <p>加载中...</p>
+      </div>
+    </div>
+    </div>
+    
+
+    <div class="global-nav-items">
+      <ul>
+          
+            
+            <li>
+              <a href="#">豆瓣</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">读书</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">电影</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">音乐</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">同城</a>
+            </li>
+          
+            
+            <li class="on">
+              <a href="/group">群组</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">阅读</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">豆瓣FM</a>
+            </li>
+          
+            <li>
+              <a href="/group/#more" class="bn-more"><span>更多</span></a>
+              
+            </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="db-nav-group" class="nav">
+  <div class="nav-wrap">
+  <div class="nav-primary">
+    <div class="nav-logo">
+      <a href="/group">豆瓣群组</a>
+    </div>
+
+    <div class="nav-items">
+    <ul>
+      <li><a href="/group/mygroup">我的群组</a></li> 
+      <li><a href="/group/explore">发现群组</a></li>
+      <li><a href="/group/explore_topic">发现话题</a></li>
+   </ul>
+   </div>
+
+    <div class="nav-search">
+      <form id="form" action="/group/search" method="get">
+        <fieldset>
+          <legend>搜索：</legend>
+          
+          <input type="hidden" name="cat" value="1019">
+          <label for="inp-query">群组、话题</label>
+          <div class="inp"><input id="inp-query" name="q" size="22" maxlength="60" value=""></div>
+          <div class="inp-btn"><input type="submit" value="搜索"></div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+
+    <div id="wrapper">
+        
+
+        
+    <div id="content">
+        
+    <h1><div class="head-nav">
+    我的群组话题
+</div></h1>
+
+    <div class="grid-16-8 clearfix">
+        
+        <div class="article">
+
+{% load endless %}
+<div class="topics">
+    <table class="olt">
+        <tbody>
+			{% paginate mygroups %}
+			{%for topic in mygroups%}
+                <tr class="pl">
+                    <td class="td-subject"><a href="/group/topic/{{topic.0.0.id}}" title="{{topic.0.0}}">{{topic.0.0|truncatechars:30}}</a></td>
+                    <td class="td-reply" nowrap="nowrap">{{topic.0.1.0|default:"0" }}回复</td>
+                    <td class="td-time" title="{{topic.0.0.last_reply_add|date:'Y-m-d H:i'}}" nowrap="nowrap">{{topic.0.0.last_reply_add|timeformat}}</td>
+                    <td><a href="/group/show/{{topic.0.0.group}}">{{topic.0.0.group}}</a></td>
+                </tr>
+			{%endfor%}
+			{% get_pages %}
+			&nbsp&nbsp&nbsp  {{pages}} &nbsp&nbsp&nbsp
+
+        </tbody>
+    </table>
+</div>
+
+	</div>
+        <div class="aside">
+
+<div id="g-user-profile" class="mod">
+
+	<div class="group-nav">
+		<ul>
+			<li {%if tp == 'all'%}class="on"{%endif%}><a href="/group/mygroup/">我的群组话题</a></li>
+            <li {%if tp == 'me'%}class="on"{%endif%}><a href="/group/my_topics/">我发起的话题 
+            </a></li>
+			<li {%if tp == 'res'%}class="on"{%endif%}><a href="/group/my_replied_topics/">我回复的话题</a></li>
+            
+            <li><a href="/group/mine/">我加入的群组</a></li>
+		</ul>
+	</div>
+
+</div>
+
+<div id="g-reguler-groups" class="component">
+
+</div>
+
+<div class="mod">
+  
+
+<div class="create-group">
+    
+
+        <a href="/group/new_group"><i>+</i>申请创建群组</a>
+</div>
+
+</div>
+
+        </div>
+        <div class="extra">
+            
+    <!-- douban ad begin -->
+          <div id="dale_newgroup_home_bottom_banner_201211" cmdty="true" cmdty-tpl="multi-pic"><iframe id="dale_newgroup_home_bottom_banner_201211_frame" frameborder="0" scrolling="no" style="overflow: hidden; margin: 0px 0px 20px;" width="950" height="120"></iframe></div>
+    <!-- douban ad end -->
+
+        </div>
+    </div>
+    </div>
+
+        
+    <div id="footer">
+        
+
+<span id="icp" class="fleft gray-link">
+    © 2005－2013 douban.com, all rights reserved
+</span>
+
+<span class="fright">
+    <a href="#/about">关于豆瓣</a>
+    · <a href="#/jobs">在豆瓣工作</a>
+    · <a href="#/about?topic=contactus">联系我们</a>
+    · <a href="#/about?policy=disclaimer">免责声明</a>
+    
+    · <a href="#/help/group">帮助中心</a>
+    · <a href="#" target="_blank">开发者</a>
+    · <a href="#/mobile/group">手机群组</a>
+    · <a href="#/partner/">豆瓣广告</a>
+</span>
+
+
+    </div>
+<script type="text/javascript" src="/static/js/6cc45d9af3ccd267.js"></script>
+    </div>
+</body></html>

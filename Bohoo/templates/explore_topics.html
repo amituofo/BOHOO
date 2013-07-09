@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="ua-windows ua-webkit"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+    发现话题
+</title>
+    
+    
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
+    
+    <script>var _head_start = new Date();</script>
+    <script src="/static/js/packed_jquery.min6301986802.js"></script>
+    <script src="/static/js/packed_douban2999726295.js"></script>
+    <link href="/static/css/packed_douban9859329871.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+    
+        
+
+    </style>
+    
+    <link rel="stylesheet" href="/static/css/3f383bc98051c9e8.css">
+    <script>
+	$(document).ready(function(){
+		$("#inp-query").click(function(){
+			console.log($("label[for='inp-query']"))
+			$("label[for='inp-query']")[0].innerText = ""
+		})
+	})
+</script>
+
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<script src="/static/js/ga.js" async="true"></script></head>
+<body>
+  
+    
+    <script type="text/javascript">var _body_start = new Date();</script>
+
+<div id="db-global-nav" class="global-nav">
+  <div class="bd">
+
+<div class="top-nav-info">
+    <span class="perf-metric"><!-- _performtips_ --></span>
+    
+     <ul>
+       <li><a href="#">豆邮</a></li>
+       <li class="nav-user-account">
+       <a target="_blank" href="#" class="bn-more"><span>{{user.nickname}}的帐号</span><span class="arrow"></span></a>
+       <div class="more-items">
+      <table cellpadding="0" cellspacing="0">
+            <tbody><tr><td><a href="#">我的豆瓣</a></td></tr>
+            <tr><td><a target="_blank" href="#">我的帐号</a></td></tr>
+            <tr><td><a href="/group/logout">退出</a></td></tr>
+         </tbody></table>
+       </div>
+
+       </li>
+     </ul>
+</div>
+
+    <div class="top-nav-reminder">
+        <a href="#" class="lnk-remind">提醒
+        </a>
+    <div id="top-nav-notimenu" class="more-items">
+      <div class="bd">
+          <p>加载中...</p>
+      </div>
+    </div>
+    </div>
+    
+
+    <div class="global-nav-items">
+      <ul>
+          
+            
+            <li>
+              <a href="#">豆瓣</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">读书</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">电影</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">音乐</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">同城</a>
+            </li>
+          
+            
+            <li class="on">
+              <a href="/group/">群组</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">阅读</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">豆瓣FM</a>
+            </li>
+          
+            <li>
+              <a href="#" class="bn-more"><span>更多</span></a>
+              
+            </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="db-nav-group" class="nav">
+  <div class="nav-wrap">
+  <div class="nav-primary">
+    <div class="nav-logo">
+      <a href="/group/">豆瓣群组</a>
+    </div>
+
+    <div class="nav-items">
+    <ul>
+      <li><a href="/group/mygroup/">我的群组</a></li> 
+      <li><a href="/group/explore">发现群组</a></li>
+      <li><a href="/group/explore_topics">发现话题</a></li>
+   </ul>
+   </div>
+
+    <div class="nav-search">
+      <form id="form" action="/group/search" method="get">
+        <fieldset>
+          <legend>搜索：</legend>
+          
+          <input type="hidden" name="cat" value="9999">
+          <label for="inp-query">群组、话题</label>
+          <div class="inp"><input id="inp-query" name="q" size="22" maxlength="60" value=""></div>
+          <div class="inp-btn"><input type="submit" value="搜索"></div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+   
+    <div id="wrapper">
+    
+    <div id="content">
+        
+    <h1><div class="head-nav">
+        发现话题
+    </div></h1>
+
+    <div class="grid-16-8 clearfix">
+        
+        
+        <div class="article">
+   
+<div class="topics">
+<ul> 
+	{%if tag%}
+		{% load endless %}
+		{% paginate topics %}
+   {%endif%}
+   {%for topic in topics%}
+  <li> 
+  <div class="content"> 
+      <div class="title"> 
+          <a href="/group/topic/{{topic.0.0.id}}">{{topic.0.0.name}}</a> 
+      </div> 
+    
+    <p>{{topic.0.0.content|truncatechars:100}}...</p> 
+      <div class="from"> 
+          <span class="reply-num"> {{topic.0.1.0.amount|default:0}}回复</span> 
+        <!--<span class="fav-num">958 喜欢</span> -->
+        <div class="from-group"> 
+            来自: <span class="group-name"><a href="/group/show/{{topic.0.0.group}}/">{{topic.0.0.group}}</a> 群组</span> 
+        </div> 
+      </div> 
+  </div> 
+  </li> 
+  {%endfor%}
+  {%if tag%}
+		{% show_pages %}
+	{%endif%}
+
+</ul>
+</div>
+
+
+	</div>
+        <div class="aside">
+            
+
+    <h2>
+        按分类浏览
+            
+    </h2>
+
+    <div class="group-cate-bd">
+
+   {%for cate in catelog%}
+   <div class="group-cate ">
+       <ul>
+           <li class="cate-label "><a href="/group/explore_topic?tag={{cate.0}}"><b>•</b>{{cate.0}}</a></li>
+		{%for song_cate in cate.1%}
+       <li><a href="/group/explore_topic?tag={{song_cate}}">{{song_cate}}</a></li>
+	   {%endfor%}
+       </ul>
+    </div>
+	{%endfor%}
+
+   </div>
+   
+</div>
+
+        </div>
+        <div class="extra">
+            
+        </div>
+    </div>
+    </div>
+
+        
+    <div id="footer">
+        
+
+<span id="icp" class="fleft gray-link">
+    © 2005－2013 douban.com, all rights reserved
+</span>
+
+<span class="fright">
+    <a href="#/about">关于豆瓣</a>
+    · <a href="#/jobs">在豆瓣工作</a>
+    · <a href="#/about?topic=contactus">联系我们</a>
+    · <a href="#/about?policy=disclaimer">免责声明</a>
+    
+    · <a href="#/help/group">帮助中心</a>
+    · <a href="#" target="_blank">开发者</a>
+    · <a href="#/mobile/group">手机群组</a>
+    · <a href="#/partner/">豆瓣广告</a>
+</span>
+
+    </div>
+    <script type="text/javascript" src="/static/js/6cc45d9af3ccd267.js"></script>
+</body></html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="ua-windows ua-webkit"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+    {{group.name}}群组高级设置
+</title>
+    
+    
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
+    
+    <link type="text/css" rel="stylesheet" href="/static/css/packed_dialog9259912804.css"><script type="text/javascript" src="/static/js/packed_jquery.tmpl2124361866.js" async="true"></script><script>var _head_start = new Date();</script>
+    <script src="/static/js/packed_jquery.min6301986802.js"></script>
+	<script src="/static/js/jquery-1.8.0.min.js"></script>
+	<script src="/static/js/jquery.artDialog.js?skin=twitter"></script>
+	
+    <script src="/static/js/packed_douban2999726295.js"></script>
+    <link href="/static/css/packed_douban9859329871.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+    
+        
+/* ROW */
+.row { margin:10px 0; overflow:hidden; }
+.row label.field { display:inline-block; float:left; margin-right:15px; text-align:right; width:65px; line-height:27px; font-size:13px; color:#666; vertical-align:middle; }
+.row label .man { color:red; padding-left:2px; display:none; }
+.row .basic-input { margin-right:10px; font-size:13px; border:1px solid #ccc; padding:5px 4px; }
+.row textarea.basic-input,
+.row input.basic-input { *border:inherit;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+}
+.row textarea.basic-input { resize:vertical; }
+.row textarea.basic-input:focus,
+.row input.basic-input:focus { border:1px solid darkGray; *border:inherit; }
+.row select.basic-input { padding:3px 4px; }
+.row .item { margin-left:80px; margin-bottom:10px; }
+.row .tip { color:#808080; padding-right:5px; }
+div.tip { margin:5px 0; } 
+
+/* page */
+.row .item { padding-top:5px; margin-left:115px; }
+.row label.field { width:100px; }
+
+/* friend group */
+.grp-item { vertical-align:top; margin:0 10px 10px 0; display:inline-block; *display:inline; zoom:1; }
+.grp-item dt, 
+.grp-item dd { margin-bottom:5px; }
+.grp-item dd,
+.grp-item .panel,
+.grp-item dt { overflow:hidden; width:75px; }
+.grp-item dt a { margin-left:5px; display:block; float:left; }
+.grp-item dt br { line-height:26px; }
+.grp-item dd { text-align:center; }
+.grp-item .item-info { color:#0c7823; margin-bottom:7px; }
+.grp-item input.bn-flat { height:19px; margin-bottom:5px; }
+
+input.positive { background-color:#8ac27b; color:white; border:1px solid #0c7823; margin-bottom:5px; width:54px; height:21px; cursor:pointer;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px; 
+}
+
+.mywaiting-holder { display:inline-block; *display:inline; zoom:1; margin:0 10px 10px 0; vertical-align:top; width:75px; }
+.mywaiting-holder a.holder-btn { color:#bbb; display:block; width:48px; height:48px; border:1px dashed #bbb; vertical-align:middle; line-height:48px; text-align:center; }
+.mywaiting-holder a.holder-btn:link,
+.mywaiting-holder a.holder-btn:visited,
+.mywaiting-holder a.holder-btn:hover,
+.mywaiting-holder a.holder-btn:active { color:#bbb; background-color:white; }
+
+#add_friend_widget { position:absolute; display:none; padding:5px; padding-bottom:0; }
+#add_friend_widget { background-color:#f4f4f4; *width:340px; }
+#add_friend_widget a.bn-close { margin-left:20px; line-height:27px; vertical-align:middle; }
+#add_friend_widget a.bn-close:link,
+#add_friend_widget a.bn-close:visited,
+#add_friend_widget a.bn-close:hover,
+#add_friend_widget a.bn-close:active { color:#666; background-color:white; }
+#add_friend_widget a.bn-close:hover { color:#333; }
+
+#add_friend_widget span.bn-flat input { *height:26px; }
+#add_friend_widget .basic-input,
+#add_friend_widget span.bn-flat { margin:0;
+    -moz-border-radius:0px;
+    -webkit-border-radius:0px;
+    border-radius:0px;
+}
+#add_friend_widget span.bn-flat { margin-left:-4px; }
+#add_friend_widget span.wrong-url,
+#add_friend_widget .loading-friend { display:inline-block; width:308px; padding:3px; height:21px; line-height:21px; vertical-align:middle; background-color:#f8f8f8; }
+#add_friend_widget .loading-friend { padding-left:19px; width:292px; background-image:url('http://img3.douban.com/pics/loading.gif'); background-repeat:no-repeat; background-position:3px 5px; }
+
+/* waiting group */
+#waiting_wrapper .header { padding:10px; background-color:#fdf3e1; margin-bottom:15px; }
+
+/* common */
+.warning-msg,
+.error-msg { color:red; padding-right:5px; }
+.placeholder { color:#999; }
+select option { color:#000; }
+
+/* category */
+.cate-item { margin-bottom: 5px; }
+.cate-item .gact { margin-left:5px; }
+
+/* edit area */
+.setting-btn { margin-left:20px; }
+.item-title { margin-bottom:5px; }
+.item-edit span.bn-flat { margin-bottom:5px; }
+.item-edit input.bn-flat { height:19px; }
+.footer .item { *margin-left:0px; *padding-left:75px; } /* IE6,7 hacks, to fix button width */
+.item-edit { background-color:#f4f4f4; padding:10px; padding-bottom:5px; }
+.item-edit .hd { color:#666; background-color:transparent; font-size:12px; margin-bottom:5px; }
+.item-edit .bd label { display:block; margin-bottom:5px; }
+.item-edit .bd { border-bottom:1px dashed #bbb; padding-bottom:5px; margin-bottom:10px; }
+.item-edit .warning-msg { margin-left:20px; margin-bottom:10px; }
+.item-edit .group-url { vertical-align:middle; }
+.item-edit .gid { background-color:white; border:1px solid #bbb; padding:3px; margin-left:3px; }
+
+.clear-cate-wrapper { float:right; }
+
+
+    </style>
+    
+<script type="text/javascript" src="/static/js/packed_do4424682597.js" data-cfg-autoload="false"></script>
+
+    <link rel="stylesheet" href="/static/css/index.css"/>
+
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<script src="/static/js/ga.js" async="true"></script>
+<script type="text/javascript">
+	$.ajaxSetup({
+	  data: {csrfmiddlewaretoken: "{{csrf_token}}"  },
+	});
+	
+	$(document).ready(function(){
+		$("#inp-query").click(function(){
+			console.log($("label[for='inp-query']"))
+			$("label[for='inp-query']")[0].innerText = ""
+		})
+	})
+	
+	$().ready(function(){
+		$(".mywaiting-holder").click(function(){
+			art.dialog({
+				title:"添加友情",
+				width:250,
+				height:100,
+				content: "<input name='friend_req' class='friend-req basic-input' type='text' placeholder='群组名称' size='30'><br><div class='tip'>请输入友情群组链接</div>",
+				id: 'EF893L',
+				ok: function () {
+					var groupname = $("input[name='friend_req']").val()
+					if(groupname != ''){
+						$.post("/group/add_friendgroup/", { current_group:"{{group.name}}",name: groupname })
+							.done(function(data) {
+								switch(data){
+									case '0':
+										//art.dialog({content: '添加友情成功！'});
+										alert("添加友情成功！")
+										location.reload()
+										break
+									case '-1':
+										 art.dialog({content: '需要登录', lock: true});
+										return false;
+										break;
+									case '-3':
+										art.dialog({content: '要添加的群组不存在,检查下！', lock: true});
+										return false;
+										break;
+								}
+							  //alert("Data Loaded: " + data);
+							  return false;
+							});
+							
+					}else{
+						alert("群组名称为空")
+						return false;
+					}
+				},
+				cancel:"取消"
+			});
+		});
+		
+		//修改隐私!--...--
+		$("#change_privacy").click(function(){
+			art.dialog({
+				title:"修改隐私",
+				content: document.getElementById('privacy_edit'),
+				ok: function () {
+					var privacy_checked = $("input[name='privacy']:checked").val()
+					$.post("/group/change_privacy/", { current_group:"{{group.name}}",privacy: privacy_checked })
+							.done(function(data) {
+								switch(data){
+									case '0':
+										//art.dialog({content: '添加友情成功！'});
+										alert("修改隐私成功！")
+										location.reload()
+										break
+									case '-1':
+										 art.dialog({content: '需要登录', lock: true});
+										return false;
+										break;
+								}
+							  //alert("Data Loaded: " + data);
+							  return false;
+							});
+					return false;
+				},
+				cancelVal: '取消',
+				cancel: true 
+			});
+		});
+		
+		//修改加入方式!--...--
+		$("#changejoin").click(function(){
+			art.dialog({
+				title:"修改成员加入方式",
+				content: document.getElementById('join_edit'),
+				ok: function () {
+					var jointype = $("input[name='join_group']:checked").val()
+					$.post("/group/change_join/", { current_group:"{{group.name}}",join_type: jointype })
+							.done(function(data) {
+								switch(data){
+									case '0':
+										//art.dialog({content: '添加友情成功！'});
+										alert("修改加入方式成功！")
+										location.reload()
+										break
+									case '-1':
+										 art.dialog({content: '需要登录', lock: true});
+										return false;
+										break;
+								}
+							  //alert("Data Loaded: " + data);
+							  return false;
+							});
+					return false;
+				},
+				cancelVal: '取消',
+				cancel: true 
+			});
+		});
+		
+		
+	});
+</script>
+</head>
+<body>  
+    
+    <script type="text/javascript">var _body_start = new Date();</script>
+
+<div id="db-global-nav" class="global-nav">
+  <div class="bd">
+
+<div class="top-nav-info">
+    <span class="perf-metric"><!-- _performtips_ --></span>
+    
+     <ul>
+       <li><a href="#">豆邮</a></li>
+       <li class="nav-user-account">
+       <a target="_blank" href="#" class="bn-more" rel="off"><span>{{user.nickname}}的帐号</span><span class="arrow"></span></a>
+       <div class="more-items">
+      <table cellpadding="0" cellspacing="0">
+            <tbody><tr><td><a href="#">我的豆瓣</a></td></tr>
+            <tr><td><a target="_blank" href="#">我的帐号</a></td></tr>
+            <tr><td><a href="/group/logout">退出</a></td></tr>
+         </tbody></table>
+       </div>
+
+       </li>
+     </ul>
+</div>
+
+    <div class="top-nav-reminder">
+        <a href="#" class="lnk-remind">提醒
+        </a>
+    <div id="top-nav-notimenu" class="more-items">
+      <div class="bd">
+          <p>加载中...</p>
+      </div>
+    </div>
+    </div>
+    
+    <div class="global-nav-items">
+      <ul>
+
+            <li>
+              <a href="#">豆瓣</a>
+            </li>
+
+            <li>
+              <a href="#">读书</a>
+            </li>
+
+            <li>
+              <a href="#">电影</a>
+            </li>
+
+            <li>
+              <a href="#">音乐</a>
+            </li>
+
+            <li>
+              <a href="#">同城</a>
+            </li>
+
+            <li class="on">
+              <a href="/group/">群组</a>
+            </li>
+
+            <li>
+              <a href="#" target="_blank">阅读</a>
+            </li>
+
+            <li>
+              <a href="#" target="_blank">豆瓣FM</a>
+            </li>
+          
+            <li>
+              <a href="#" class="bn-more"><span>更多</span></a>
+              
+            </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="db-nav-group" class="nav">
+  <div class="nav-wrap">
+  <div class="nav-primary">
+    <div class="nav-logo">
+      <a href="/group/">群组</a>
+    </div>
+
+    <div class="nav-items">
+    <ul>
+      <li><a href="/group/mygroup/">我的群组</a></li> 
+      <li><a href="/group/explore">发现群组</a></li>
+      <li><a href="/group/explore_topic">发现话题</a></li>
+   </ul>
+   </div>
+
+    <div class="nav-search">
+      <form id="form" action="/group/search" method="get">
+        <fieldset>
+          <legend>搜索：</legend>
+          
+          <input type="hidden" name="cat" value="9999">
+          <label for="inp-query">群组、话题</label>
+          <div class="inp"><input id="inp-query" name="q" size="22" maxlength="60" value=""></div>
+          <div class="inp-btn"><input type="submit" value="搜索"></div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+
+    <div id="wrapper">
+        
+
+        
+    <div id="content">
+        
+    <h1>{{group.name}}群组高级设置</h1>
+
+    <div class="grid-16-8 clearfix">
+        
+        
+        <div class="article">
+	  
+    
+
+
+    <div class="clear"></div>
+    <div class="xbar clearfix"><div>
+    
+            <!--<a href="#/group/468991/manage_log">管理日志</a>-->
+            <span class="now"><span>高级设定</span></span>
+           <!-- <a href="#/group/468991/keywords">违禁话题</a>-->
+           <!-- <a href="#/group/468991/statistics">数据统计</a>-->
+            <a href="/group/{{group.name}}/members">成员管理</a>
+            <a href="/group/{{group.name}}/group_edit">基本信息</a>
+    </div></div>
+    <div class="clear"></div>
+
+        <div class="row" id="adv">
+            <label class="field">友情群组</label>
+            
+            <div id="friend_wrapper" class="item">
+				{%for friend in group.gfriend.all|slice:":4"  %}
+					<div class="grp-item mywaiting">
+						<dl>
+							<dt>
+							<a href="/group/show/{{friend.name}}/" target="_blank">
+								<img src="#" alt="{{friend.name}}">
+							</a>
+							</dt>
+							<dd>
+							<a href="/group/show/{{friend.name}}/" target="_blank">{{friend.name}}</a><span>({{friend.member.all|length|default:0}})</span>
+							</dd>
+						</dl>
+					</div>
+				{%endfor%}
+                    <div class="mywaiting-holder">
+                        <a class="holder-btn" href="#">+</a>
+                    </div>
+                   <!-- <div class="mywaiting-holder">
+                        <a class="holder-btn" href="#">+</a>
+                    </div>
+                    <div class="mywaiting-holder">
+                        <a class="holder-btn" href="#">+</a>
+                    </div>
+                    <div class="mywaiting-holder">
+                        <a class="holder-btn" href="#">+</a>
+                    </div>-->
+            </div>
+            <p class="attn item"></p>
+        </div>
+    <div class="row">
+        <label class="field">隐私</label>
+            <div id="privacy" class="item">
+                <div class="item-title">
+                    <span class="privacy-type">
+						{%if group.type == 0%}
+                        公开
+                        <span class="tip">(任何人都可见，成员名单以及话题内容)</span>
+						{%else%}
+						私密
+						<span class="tip">(仅群组成员可见，需组员邀请才能加入)</span>
+						{%endif%}
+                    </span>
+
+                        <a href="javascript:void(0)"  id="change_privacy" class="setting-btn change-privacy">修改</a> 
+                </div>
+                <div  id="privacy_edit" class="item-edit hide">
+                    <div class="hd">
+                        修改隐私
+                    </div>
+                    <div class="bd">
+                        <label>
+                            <input class="public-opt" name="privacy" type="radio" value="0" {%if group.type == 0%}checked{%endif%}  />公开
+                            <span class="tip">(任何人都可见，成员名单以及话题内容)</span>
+                        </label>
+                        <label>
+                            <input class="private-opt" name="privacy" type="radio" value="1" {%if group.type == 1%}checked{%endif%}  />私密
+                            <span class="tip">(仅群组成员可见，需组员邀请才能加入)</span>
+                        </label>
+                    </div>
+                    <!--<div class="footer">
+                        <input type="button" value="确认" class="positive submit-change">
+                        <span class="bn-flat">
+                            <span><input type="button" value="取消" class="bn-flat cancel-change"></span>
+                        </span>
+                    </div>-->
+                </div>
+            </div>
+    </div>
+    <div class="row">
+        <label class="field">成员加入方式</label>
+        <div id="join_type_wrapper" class="item">
+            <div class="item-title">
+				{%if group.member_join == 0 %}
+                    <span class="join-type">允许任何人加入</span>
+				{%else%}
+					 <span class="join-type">需要申请,管理员批准后才能加入</span>
+				{%endif%}
+					<a id="changejoin" class="setting-btn change-join-type" href="javascript:void(0);">修改</a>
+					
+            </div>
+            <div id="join_edit" class="item-edit hide">
+                <div class="hd">
+                    修改成员加入方式
+                </div>
+                <div class="bd">
+                    <label>
+                        <input class="all-opt" name="join_group" type="radio" value="0" {%if group.member_join == 0%}checked{%endif%} >任何人都能加入
+                    </label>
+                   <!-- <label>
+                        <input class="invite-opt" name="join_group" type="radio" value="invite">需组员邀请才能加入
+                    </label>-->
+                    <label>
+                        <input class="review-opt" name="join_group" type="radio" value="1" {%if group.member_join == 1%}checked{%endif%} >需要申请,管理员批准后才能加入
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+	</div>
+        <div class="aside">
+            
+<p class="pl2">&gt; <a href="/group/show/{{group.name}}/">回{{group.name}}群组</a></p>
+
+        </div>
+        <div class="extra">
+            
+        </div>
+    </div>
+    </div>
+
+        
+    <div id="footer">
+        
+
+<span id="icp" class="fleft gray-link">
+    © 2005－2013 douban.com, all rights reserved
+</span>
+
+<span class="fright">
+    <a href="#/about">关于豆瓣</a>
+    · <a href="#/jobs">在豆瓣工作</a>
+    · <a href="#/about?topic=contactus">联系我们</a>
+    · <a href="#/about?policy=disclaimer">免责声明</a>
+    
+    · <a href="#/help/group">帮助中心</a>
+    · <a href="#" target="_blank">开发者</a>
+    · <a href="#/mobile/group">手机群组</a>
+    · <a href="#/partner/">豆瓣广告</a>
+</span>
+
+
+    </div>
+
+    </div>
+    <script type="text/javascript" src="/static/js/6cc45d9af3ccd267.js"></script>
+
+</body></html>

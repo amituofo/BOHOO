@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="ua-windows ua-webkit"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>
+    群组
+</title>
+    
+    
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
+	<script>var _head_start = new Date();</script>
+    <script src="/static/js/packed_jquery.min6301986802.js"></script>
+    <script src="/static/js/packed_douban2999726295.js"></script>
+    <link href="/static/css/packed_douban9859329871.css" rel="stylesheet" type="text/css">
+	<script src="/static/js/jquery-1.8.0.min.js"></script>
+	
+    <style type="text/css">
+    
+        
+    .tags { width: 400px; }
+    .tags-nav { float: right; _margin-left: -3px; }
+    .tags-nav .list-item {border: none; width: 80px; display: block; }
+    .tags-nav .list-item a{ display: block; padding: 5px 12px; margin-left: -1px;  z-index: 2; border-radius: 0 4px 4px 0; position:relative; zoom: 1;  outline: none;}
+    .tags-nav .list-item a.active{   z-index: 88; color: #111; }
+    .tags-nav .list-item a:hover {  background: none; color: #111;}
+    .tags-nav .list-item a:active {  background: none; color: #111;}
+
+    .item-inline .site-type {float: left;}
+    .site-types {height: 100px; }
+    .site-type { width: 200px; height:100%; margin-right: 5px; padding: 5px; overflow: hidden; backgroud: white; cursor: pointer;}
+    .site-type input { float: left; margin-top: 2px; }
+    .site-type label { overflow: hidden; zoom: 1; padding-left: 3px; cursor: pointer;}
+    .site-type .bd { color: #666; }
+    .site-type .bd em{ color: red; }
+    .site-types .selected { background: #F4F4F4; }
+    .grid-16-8 div.article { padding-right: 5px; width: 630px; }
+		.field p { margin-left:110px;padding:8px 10px;width:350px;color:#666;background-color:#f8f8f8; }
+		.field-mobile .btn { padding:5px 15px;verical-align:middle; }
+		.basic-form .field-mobile .wide-input { width:295px; }
+		.field-number { font-size:14px; }
+		.field-number i { color:#072;font-style:normal; }
+		.field-number .btn-resend { margin-left:20px;padding:2px 5px;font-size:12px;font-weight:normal; }
+		.basic-form .field-authcode .field-label { width:auto; }
+    .basic-form .field-authcode .wide-input { width:80px; }
+		.mobile-binding-result { line-height:30px;font-size:14px; }
+	.error {color: #fe2617;}
+    </style>
+    
+    <link rel="stylesheet" href="/static/css/packed_form6979831053.css">  
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script>
+		$().ready(function(){
+			$("#form_agreement").click(function(){
+				if($(this).attr("checked") == "checked"){
+					$(".btn-submit").removeClass("disabled")
+					$(".btn-submit").addClass("enabled")
+					$('.btn-submit').prop('disabled', false);
+					
+				}else{
+					$(".btn-submit").removeClass("enabled")
+					$(".btn-submit").addClass("disabled")
+					$('.btn-submit').prop('disabled', true);
+				}
+			})
+		});
+		$(document).ready(function(){
+		$("#inp-query").click(function(){
+			console.log($("label[for='inp-query']"))
+			$("label[for='inp-query']")[0].innerText = ""
+		})
+		
+		$("#root").change(function(){
+               $("#root option").each(function(i,o){
+                   if($(this).attr("selected"))
+                   {
+                       $(".tags").hide();
+                       $(".tags").eq(i).show();
+                   }
+               });
+           });
+           $("#root").change();
+	})
+	</script>
+
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<script src="/static/js/ga.js" async="true"></script></head>
+<body>
+  
+    
+    <script type="text/javascript">var _body_start = new Date();</script>
+
+<div id="db-global-nav" class="global-nav">
+  <div class="bd">
+<div class="top-nav-info">
+    <span class="perf-metric"><!-- _performtips_ --></span>
+    
+     <ul>
+       <li><a href="#">豆邮</a></li>
+       <li class="nav-user-account">
+       <a target="_blank" href="#" class="bn-more" rel="off"><span>{{user.nickname}}的帐号</span><span class="arrow"></span></a>
+       <div class="more-items">
+      <table cellpadding="0" cellspacing="0">
+            <tbody><tr><td><a href="#">我的豆瓣</a></td></tr>
+            <tr><td><a target="_blank" href="#">我的帐号</a></td></tr>
+            <tr><td><a href="/group/logout">退出</a></td></tr>
+         </tbody></table>
+       </div>
+
+       </li>
+     </ul>
+</div>
+
+
+    <div class="top-nav-reminder">
+        <a href="#" class="lnk-remind">提醒
+        </a>
+    <div id="top-nav-notimenu" class="more-items">
+      <div class="bd">
+          <p>加载中...</p>
+      </div>
+    </div>
+    </div>
+    
+
+    <div class="global-nav-items">
+      <ul>
+          
+            
+            <li>
+              <a href="#">豆瓣</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">读书</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">电影</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">音乐</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">同城</a>
+            </li>
+          
+            
+            <li class="on">
+              <a href="/group/">群组</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">阅读</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">豆瓣FM</a>
+            </li>
+          
+            <li>
+              <a href="/group/new_group#more" class="bn-more"><span>更多</span></a>
+
+            </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="db-nav-group" class="nav">
+  <div class="nav-wrap">
+  <div class="nav-primary">
+    <div class="nav-logo">
+      <a href="/group/">群组</a>
+    </div>
+
+    <div class="nav-items">
+    <ul>
+      <li><a href="/group/mygroup/">我的群组</a></li> 
+      <li><a href="/group/explore">发现群组</a></li>
+      <li><a href="/group/explore_topic">发现话题</a></li>
+   </ul>
+   </div>
+
+    <div class="nav-search">
+      <form id="form" action="" method="get">
+        <fieldset>
+          <legend>搜索：</legend>
+          
+          <input type="hidden" name="cat" value="1019">
+          <label for="inp-query">群组、话题</label>
+          <div class="inp"><input id="inp-query" name="q" size="22" maxlength="60" value=""></div>
+          <div class="inp-btn"><input type="submit" value="搜索" disabled="" class="disabled"></div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+   
+    <div id="wrapper">
+    
+    <div id="content">
+        
+    <h1>申请创建群组</h1>
+
+    <div class="grid-16-8 clearfix">
+   
+        <div class="article">
+	
+	<p class="error">{{msg}}</p>
+    <form id="site-form" name="lzform" method="post" class="basic-form" action="">
+	{% csrf_token %}
+	<div style="display:none;"><input type="hidden" name="ck" value="second"></div>
+        <div class="field baseline-field">
+            <label class="field-label"> 群组类型:</label>
+            <div class="item item-inline site-types">
+                <div class="site-type selected">
+                    <input type="radio" name="site_type" checked="true" value="0">
+                    <label for="site_type">
+                        <div class="hd">公开群组</div>
+                        <div class="bd">
+                            豆瓣的任何成员都可见。<br>
+                            可以设置成员的加入方式。<br>
+                            以后可以变为私密群组。<br>
+                        </div>
+                    </label>
+                </div>
+                <div class="site-type">
+                    <input type="radio" name="site_type" value="1">
+                    <label for="site_type">
+                        <div class="hd">私密群组
+                        </div>
+                        <div class="bd">
+                            只有接受组员邀请才能加入群组。<br>
+                            <em>以后永远不能变为公开的群组。</em>
+                        </div>
+                   </label>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="field-label">群组名称:</label>
+            <div class="item">
+                <input name="grp_name" id="grp_name" type="text" maxlength="63" value="" class="basic-input">
+            </div>
+        </div>
+        <div class="field">
+            <label class="field-label">群组介绍:</label>
+            <div class="item baseline-item">
+                <textarea name="grp_content" id="grp_content" type="text" rows="15" cols="50" value="" class="basic-textarea"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="field-label">群组分类:</label>
+            <div class="item">
+                <!--<input name="tags" id="tags" type="text" maxlength="255" value="" class="wide-input tags-input" data-datas=".tags" autocomplete="off">-->
+			  
+				<select name="tags" id="tags">
+					{%for cate in cats%}
+					<option>{{cate.cate_name}}</option>
+					{%endfor%}
+				</select>
+            </div>
+						<p>标签作为关键词可以被用户搜索到，多个标签之间用空格分隔开。</p>
+        </div>
+
+				<div id="g-addr-item" class="field" style="display:none;">
+            <label class="field-label">家庭住址:</label>
+            <div class="item">
+                <input name="abroad_address" type="text" value="" class="wide-input">
+            </div>
+                        <p>填写你的详细海外家庭地址，请放心，地址不会被其他任何人知道。
+						中国大陆用户请<a href="#/group/new_group#switch" class="lnk-switch-binding">绑定手机号</a></p>
+				</div>
+
+            <div id="g-phone-item" class="field field-mobile">
+                <label class="field-label">手机号:</label>
+                <div class="item">
+                    <input name="user_phone" type="text" value="" class="wide-input stat-no-sendcode stat-no-pass  stat-no-verify">
+                                    <input type="button" class="btn btn-bind disabled" value="验证">	
+                </div>
+                            <p> 请放心，我们尊重用户隐私，手机号不会被其他任何人知道。
+                            <br><a href="#/group/new_group#switch" class="lnk-switch-addr">海外用户?</a></p>
+            </div>
+
+
+        <div class="field">
+            <label class="field-label">&nbsp;</label>
+            <div class="item">
+                <label class="checkbox"><input id="form_agreement" name="form_agreement" type="checkbox">
+                    我已认真阅读并同意《<a href="#/about?policy=guideline" target="_blank">社区指导原则</a>》和《<a href="#/about?policy=disclaimer" target="_blank">免责声明</a>》。
+                </label>
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="hidden" name="step_submit" value="on">
+            <input class="btn-submit disabled" type="submit" value="提交申请" disabled="disabled">
+        </div>
+    </form>
+
+	</div>
+        <div class="aside">
+            
+    
+    <h2>
+        群组创建
+            &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
+    </h2>
+
+    <div class="indent">
+        <span class="pl">
+            群组需要审核通过后才能完成创建,管理员会在3日内审核
+            申请, 审核结果会用豆邮通知你,请耐心等待。
+        </span>
+    </div>
+
+    
+    <h2>
+        群组标签
+            &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
+    </h2>
+
+    <div class="indent">
+        <span class="pl">
+            群组可以有不超过5个的标签，用来描述群组的目的。标签作为关键词可以被用户搜索到。 多个标签之间用空格分隔开。 <br><br>
+            比如，"Philip K. Dick群组"可以用 "作者 作家 科幻 科学幻想 迪克"， "关中豆瓣" 可以用 "本地 同城 西北 陕西 西安"。群组名称本身可以被搜索，就不用再加在标签里了。 群组的名称、介绍、标签在创立后都可以随时更改。
+       </span>
+    </div>
+
+        </div>
+        <div class="extra">
+            
+        </div>
+    </div>
+    </div>
+
+        
+    <div id="footer">
+        
+
+<span id="icp" class="fleft gray-link">
+    © 2005－2013 douban.com, all rights reserved
+</span>
+
+<span class="fright">
+    <a href="#/about">关于豆瓣</a>
+    · <a href="#/jobs">在豆瓣工作</a>
+    · <a href="#/about?topic=contactus">联系我们</a>
+    · <a href="#/about?policy=disclaimer">免责声明</a>
+    
+    · <a href="#/help/group">帮助中心</a>
+    · <a href="" target="_blank">开发者</a>
+    · <a href="#/mobile/group">手机群组</a>
+    · <a href="#/partner/">豆瓣广告</a>
+</span>
+
+
+    </div>
+    </div>
+<script type="text/javascript" src="/static/js/6cc45d9af3ccd267.js"></script>
+</body></html>

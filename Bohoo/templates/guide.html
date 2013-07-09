@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+{% load get_at_index %}
+<html lang="zh-CN" class="ua-windows ua-webkit"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>加入喜欢的群组</title> 
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
+    
+    <script>var _head_start = new Date();</script>
+    <script src="/static/js/jquery-1.8.0.min.js"></script>
+    <script src="/static/js/packed_douban2999726295.js"></script>
+	<script src="/static/js/jquery.artDialog.js?skin=twitter"></script>
+	<script src="/static/js/guide.js"></script>
+    <link href="/static/css/packed_douban9859329871.css" rel="stylesheet" type="text/css">
+    <style type="text/css">      
+#db-nav-group{margin-bottom:20px}.grid-16-8 .article{float:none;padding-right:0;width:auto;overflow:hidden}.banner{background:url(http://img3.douban.com/pics/group/newuser_guide_banner.jpg) no-repeat;height:192px;position:relative;margin-bottom:25px}.banner .intro-words{width:443px;height:66px;padding:15px;position:absolute;left:48px;top:48px;background:#fff;background:rgba(255,255,255,0.95)}.banner .intro-words h1{color:#333;padding-bottom:12px;font-weight:normal;font-size:22px}.banner .intro-words p{line-height:1.4;color:#555;margin:0;padding-bottom:6px;font-size:13px}.guide-tips{font-size:15px;color:#0e959d;line-height:1;margin:0;padding:0 0 25px}.cate-list{font-size:0;width:952px;padding-bottom:16px;border-bottom:1px solid #b2b2b2}.cate-list .cate-item{display:inline-block;*display:inline;*zoom:1;vertical-align:top;width:93px;height:44px;padding:13px 10px;background:#f8f8f8;margin-right:6px;text-align:center;color:#888;cursor:pointer}.cate-list .cate-item h3{background:0;margin:0;font-size:18px;color:#333;line-height:1;padding-bottom:10px;text-align:left}.cate-list .cate-item .arr{width:0;height:0;overflow:hidden;border:9px dashed transparent;border-bottom:9px solid #b2b2b2;position:relative;top:19px;top:18px\0;visibility:hidden}.cate-list .cate-item .arr-inner{width:0;height:0;overflow:hidden;border:8px dashed transparent;border-bottom:8px solid #fff;position:relative;top:20px;top:19px\0;left:-17px;visibility:hidden}.cate-list .cate-item.active{background:#999;color:#eee}.cate-list .cate-item.active h3{color:#fff}.cate-list .cate-item.active .arr,.cate-list .cate-item.active .arr-inner{visibility:visible}:root .cate-list .cate-item .arr{top:19px \0}:root .cate-list .cate-item .arr-inner{top:20px \0}.subcate-list{font-size:0;height:18px;overflow:hidden;text-align:left}.subcate-list li{display:inline-block;*display:inline;*zoom:1;vertical-align:top;font-size:12px;padding-right:3px}.subcate-list li:last-child{padding-right:0}.groups-panel{width:950px;overflow:hidden;border-bottom:1px solid #b2b2b2;padding-bottom:5px;margin-bottom:18px}.cate-group-list{font-size:0;width:968px;display:none}.cate-group-list.active{display:block}.cate-group-list .group-item{display:inline-block;*display:inline;*zoom:1;vertical-align:top;width:222px;padding:15px 20px 10px 0;font-size:12px;overflow:hidden;word-wrap:break-word;border-bottom:1px #d9d9d9 dashed}.cate-group-list .group-item.last-line{border-bottom:0}.cate-group-list .group-item .group-avatar{float:left;padding-right:10px}.cate-group-list .group-item .group-title{color:#333;background:0;margin:0;height:auto}.cate-group-list .group-item .members-num{margin:0;color:#999;line-height:1;height:1em;overflow:hidden}.cate-group-list .group-item .btn-join{color:#c76449;cursor:pointer}.cate-group-list .group-item .btn-join:active,.cate-group-list .group-item .btn-join:hover{color:#fff;background:#c76449}.cate-group-list .group-item .joined{color:#999}.misc-info{font-size:0;height:40px;line-height:40px}.misc-info .joined-groups-num{margin:0;display:inline-block;*display:inline;*zoom:1;vertical-align:top;width:778px;padding-left:16px;background:#f8f8f8;font-size:14px;color:#666}.misc-info .joined-groups-num .num-count.active{color:#37a;cursor:pointer;_display:inline;_background:0}.misc-info .start-group{display:inline-block;*display:inline;*zoom:1;vertical-align:top;width:153px;background:#ddd;color:#fff;font-size:14px;text-align:center;cursor:default;border-left:3px solid #fff}.misc-info .start-group.active{cursor:pointer;background:#6ebfc3}.misc-info .start-group.active:active,.misc-info .start-group.active:hover,.misc-info .start-group.active:link,.misc-info .start-group.active:visited{background:#6ebfc3;color:#fff}.joined-groups{position:absolute;display:none}.joined-groups .arr{position:absolute;left:-9px;top:50%;margin-top:-2px;width:0;height:0;overflow:hidden;border:5px dashed transparent;border-right:5px solid #c9c9c9}.joined-groups .arr-inner{position:absolute;left:-7px;top:50%;margin-top:-1px;width:0;height:0;overflow:hidden;border:4px dashed transparent;border-right:4px solid #fff}.joined-groups .joined-group-list{font-size:12px;padding:4px 13px;max-height:152px;overflow-x:hidden;overflow-y:auto;background:#fff;border:1px solid #c9c9c9;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:1px 1px 2px rgba(0,0,0,0.3);box-shadow:1px 1px 2px rgba(0,0,0,0.3)}.joined-groups .joined-group-list li{width:210px;height:24px;line-height:24px;padding:7px 0;overflow:hidden;word-wrap:break-word}.joined-groups .joined-group-list .group-avatar{display:inline-block;*display:inline;*zoom:1;vertical-align:top;margin-right:6px}.joined-groups .joined-group-list .group-title{color:#333}
+
+    </style>
+    
+    <link rel="stylesheet" href="/static/css/7ee68be0b52bac23.css">
+    <script>
+	var csrf_token = '{{ csrf_token }}'
+	var currentUser = '{{user}}'
+	</script>
+
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  
+    
+    <script type="text/javascript">var _body_start = new Date();</script>
+
+<div id="db-global-nav" class="global-nav">
+  <div class="bd">
+
+<div class="top-nav-info">
+    <span class="perf-metric"><!-- _performtips_ --></span>
+    
+     <ul>
+      {% if user.is_authenticated %}
+       <li><a href="#">豆邮</a></li>
+       <li class="nav-user-account">
+       <a target="_blank" href="#" class="bn-more" rel="off"><span>{{user.nickname}}的帐号</span><span class="arrow"></span></a>
+       <div class="more-items">
+      <table cellpadding="0" cellspacing="0">
+            <tbody><tr><td><a href="#">我的豆瓣</a></td></tr>
+            <tr><td><a target="_blank" href="#">我的帐号</a></td></tr>
+            <tr><td><a href="/group/logout">退出</a></td></tr>
+         </tbody></table>
+       </div>
+
+       </li>
+	   {%else%}
+	   <li><a href="/group/login">登录</a></li>
+	   <li><a href="/group/register">注册</a></li>
+	   <li></li>
+	   {%endif%}
+     </ul>
+</div>
+
+
+    <div class="top-nav-reminder">
+        <a href="#" class="lnk-remind">提醒
+        </a>
+    <div id="top-nav-notimenu" class="more-items">
+      <div class="bd">
+          <p>加载中...</p>
+      </div>
+    </div>
+    </div>
+    
+
+    <div class="global-nav-items">
+      <ul>
+          
+            
+            <li>
+              <a href="/">豆瓣</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">读书</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">电影</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">音乐</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">同城</a>
+            </li>
+          
+            
+            <li class="on">
+              <a href="/group/">群组</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">阅读</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">豆瓣FM</a>
+            </li>
+          
+            <li>
+              <a href="#" class="bn-more"><span>更多</span></a>
+              
+            </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="db-nav-group" class="nav">
+  <div class="nav-wrap">
+  <div class="nav-primary">
+    <div class="nav-logo">
+      <a href="/group/">豆瓣群组</a>
+    </div>
+
+    <div class="nav-items">
+    <ul>
+      <li><a href="/group/mygroup/">我的群组</a></li> 
+   </ul>
+   </div>
+
+  </div>
+  </div>
+</div>
+
+    <div id="wrapper">
+        
+
+        
+    <div id="content">
+        
+    <div class="grid-16-8 clearfix">
+        
+        
+        <div class="article">
+	  
+<div class="banner">
+    <div class="intro-words">
+        <h1>欢迎来到豆瓣群组，{{user.nickname}}</h1>
+        <p>群组是志趣相投的人在一起讨论话题的地方，<br>无论你来自哪里，有什么兴趣爱好，都能在这里找到和你一样特别的人。</p>
+    </div>
+</div>
+<p class="guide-tips">加入一些群组来定制你的群组首页。我们为你推荐了一些，按分类选择你感兴趣的加入，试试看！</p>
+
+<ul id="J_GroupCateList" class="cate-list">
+	{%for k,v in catelog.items %}
+		{%if forloop.counter == 1 %}
+		<li class="cate-item active" rel="cate-group-{{ forloop.counter }}" data-id="270">
+		{%else%}
+		<li class="cate-item" rel="cate-group-{{ forloop.counter }}" data-id="270">
+		{%endif%}
+			<h3>{{k}}</h3>
+			<!--<ul class="subcate-list">
+				{%for val in v.0%}
+				<li>{{val}}</li>
+				{%endfor%}
+				<li>...</li>
+			</ul>-->
+			<s class="arr"></s>
+			<s class="arr-inner"></s>
+		</li>
+    {%endfor%}
+
+</ul>
+
+<div id="J_GroupsPanel" class="groups-panel">
+    {%for k,v in catelog.items %}
+		{%if forloop.counter == 1 %}
+		<ul id="cate-group-{{ forloop.counter }}" class="cate-group-list active">
+		{%else%}
+		<ul id="cate-group-{{ forloop.counter }}" class="cate-group-list">
+		{%endif%}
+			{%for val in v.1.0 %}
+			{{val}}
+				{%if val|length > 0 %}
+				{%for g in val %}
+				<li class="group-item" data-id="{{g.id}}">
+				{%if g.image%}
+					<img class="group-avatar" width="75" height="75" src="/media/{{g.image.url}}" alt="{{g.name}}" title="{{g.name}}">
+				{%else%}
+					<img class="group-avatar" width="75" height="75" src="{{g.image}}" alt="{{g.name}}" title="{{g.name}}">
+				{%endif%}
+					<h4 class="group-title" title="{{g.name}}">{{g.name|truncatewords:10}}</h4>
+
+					<p class="members-num">{{g.member.all|length|default:0}}&nbsp;个群组成员</p>
+				{%if user in g.member.all%}
+					<span class="btn-join" data-id="{{g.name}}">已经是小组成员</span>
+				{%else%}
+					<span class="btn-join" data-id="{{g.name}}">+加入群组</span>
+				{%endif%}
+					
+				</li>
+				{%endfor%}
+				{%endif%}
+			{%endfor%}
+		</ul>
+	{%endfor%}
+
+</div>
+
+<div class="misc-info">
+    <p class="joined-groups-num">
+        已加入<em id="J_JoinedGroupsCount" class="num-count"><span id="J_JoinedGroupsNum">0</span>个群组</em>
+    </p>
+    <a id="J_StartGroup" class="start-group" href="/group/mygroup" title="完成，进入我的群组">完成，进入我的群组</a>
+    
+</div>
+
+	</div>
+        <div class="aside">
+            
+        </div>
+        <div class="extra">
+            
+        </div>
+    </div>
+    </div>
+        
+    <div id="footer">
+        
+<span id="icp" class="fleft gray-link">
+    © 2005－2013 douban.com, all rights reserved
+</span>
+
+<span class="fright">
+    <a href="/about">关于豆瓣</a>
+    · <a href="/jobs">在豆瓣工作</a>
+    · <a href="/about?topic=contactus">联系我们</a>
+    · <a href="/about?policy=disclaimer">免责声明</a>
+    
+    · <a href="/help/group">帮助中心</a>
+    · <a href="#" target="_blank">开发者</a>
+    · <a href="/mobile/group">手机群组</a>
+    · <a href="/partner/">豆瓣广告</a>
+</span>
+
+    </div>
+    </div>
+    
+<!--<script src="/static/js/packed_newuser_guide.js"></script>-->
+<script type="text/javascript" src="/static/js/6cc45d9af3ccd267.js"></script>
+
+
+    <!-- flet5-->
+
+<div id="J_JoinedGroups" class="joined-groups" style="left: 318px; top: 708px;">
+        <ul id="J_JoinedGroupList" class="joined-group-list">
+            <li class="nope">还没有加入群组，从上面挑几个吧 ^_^</li>
+        </ul>
+        <s class="arr"></s>
+        <s class="arr-inner"></s>
+    </div></body></html>

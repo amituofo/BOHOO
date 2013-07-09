@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="ua-windows ua-webkit"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>
+    {{topic.0.name}}
+</title>
+
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
+   
+
+   <script>var _head_start = new Date();</script>
+    <script src="/static/js/packed_jquery.min6301986802.js"></script>
+	<script src="/static/js/jquery-1.8.0.min.js"></script>
+	<script src="/static/js/jquery.artDialog.js?skin=twitter"></script>
+    <script src="/static/js/packed_douban2999726295.js"></script>
+    <link href="/static/css/packed_douban9859329871.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+.pil {
+height: 48px;
+width: 48px;
+}
+    </style>
+    
+<link rel="stylesheet" type="text/css" href="/static/css/packed_dialog9259912804.css">
+<script type="text/javascript" src="/static/js/packed_dialog3992230463.js"></script>
+<style type="text/css">
+.dui-dialog .bd { padding: 40px; font-size: 10pt; }
+.dui-dialog .ft { background: #e4e4e4; height: 40px; }
+.dui-dialog .ft div { padding-top: 15px; }
+.dui-dialog .dui-dialog-prompt { float: left; }
+.dui-dialog .bn-flat { color: #ffffff; float:right; width: 50px; }
+.dui-dialog .btn-ok { background: #6fb45d; }
+.dui-dialog .btn-cancel { background: #999999; }
+</style>
+
+    <link rel="stylesheet" href="/static/css/1cd1b261f61feb11.css">
+    <script>
+		$.ajaxSetup({
+		  data: {csrfmiddlewaretoken: "{{csrf_token}}"  },
+		});
+		
+		$(document).ready(function(){
+		$("#inp-query").click(function(){
+			console.log($("label[for='inp-query']"))
+			$("label[for='inp-query']")[0].innerText = ""
+		})
+	})
+	
+		var  topic = '{{topic}}'
+		var  reply = '{{reply}}'
+		function isEmpty(s1)
+		{
+			var sValue = s1 + "";
+			var test = / /g;
+			sValue = sValue.replace(test, "");
+			return sValue==null || sValue.length<=0;
+		}
+		$().ready(function(){
+			$("form[name=comment_form]").bind('submit',function(){
+				if(isEmpty($("#last").val())){
+					$("#last").focus()
+					return false;
+				}
+				return true;
+			   
+			});
+			
+			$('#last').bind('input propertychange', function() {
+				  if(this.value.length){
+					$("input[name=submit_btn]").removeAttr("disabled")
+				  }
+			});
+			
+			$(".lnk-reply").click(function(){
+				var rep_content = $(this).attr("data-id")
+				$("input[name='ref_content']").val(rep_content)
+				var rep_creator = $(this).attr("data-cid")
+				
+				var quote_str = rep_content+"<span class='pubdate'><a href='#'>"+rep_creator+"</a></span>"
+				$("#quote").html(quote_str)
+				$("input[name='ref_user']").val("<a href='#'>"+rep_creator+"</a>")
+			});
+			
+			//举报处理
+			$(".topicreport").click(function(){
+				var repid = $(this).attr("data-id")
+				var dst_type = $(this).attr("data-cid")
+				art.dialog({
+					title:"选择举报原因",
+					content: document.getElementById('report_value'),
+					ok: function () {
+						var reason = $("input[name='reason']:checked").val()
+
+						$.post("/group/user_report/", {reason: reason,rep_id:repid,rep_type:dst_type })
+								.done(function(data) {
+									switch(data){
+										case '0':
+											//art.dialog({content: '添加友情成功！'});
+											alert("举报成功！")
+											location.reload()
+											break
+										case '-3':
+											 art.dialog({content: '信息确实', lock: true});
+											return false;
+											break;
+										default:
+											alert("未知错误")
+											break;
+									}
+								  //alert("Data Loaded: " + data);
+								  return false;
+								});
+						return false;
+					},
+					cancelVal: '取消',
+					cancel: true 
+				});
+			});
+		});
+	</script>
+
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<style type="text/css" id="css-share-button">.bn-sharing{padding-right:10px;background-image: url(http://t.douban.com/pics/a1.png) !important; background-repeat: no-repeat !important; background-position: 100% -19px !important;*display:inline-block;}a.bn-sharing:hover{text-decoration:underline;} .bn-sharing-on{background-position:100% 4px !important;position:relative !important;z-index:1 !important;}#db-div-sharing{position:absolute;width:100px;*margin-top:-2px;}#db-div-sharing .bd{border:1px solid #aaa;background:#fff;padding:10px 0 0 10px;}#db-div-sharing .bd li{line-height:17px;margin-bottom:10px;}#db-div-sharing .hd{position:absolute;height:24px;*line-height:21px;overflow:hidden;right:0;top:-24px;padding:0 5px;border:1px solid #aaa;border-bottom:none;background:#fff;}.rec-ren,.rec-sin,.rec-kx,.rec-msn,.rec-qzone,.rec-tx,.rec-sohu,.rec-qqim{padding-left:20px;background:url(http://t.douban.com/pics/a4.png) no-repeat 0 0;}.rec-ren{background-position:0 -90px;}.rec-sin{background-position:0 -30px;}.rec-msn{background-position:0 -60px;}.rec-kx{background-position:0 -120px;}.rec-tx{background-position:0 -150px;}.rec-sohu{background-position:0 -180px;}.rec-qqim{background-position:0 -243px;}</style><script src="/static/js/ga.js" async="true"></script></head>
+<body>
+  
+    
+    <script type="text/javascript">var _body_start = new Date();</script>
+
+<div id="db-global-nav" class="global-nav">
+  <div class="bd">
+
+<div class="top-nav-info">
+    <span class="perf-metric"><!-- _performtips_ --></span>
+    
+     <ul>
+       {% if user.is_authenticated %}
+       <li><a href="#">豆邮</a></li>
+       <li class="nav-user-account">
+       <a target="_blank" href="#" class="bn-more" rel="off"><span>{{user.nickname}}的帐号</span><span class="arrow"></span></a>
+       <div class="more-items">
+      <table cellpadding="0" cellspacing="0">
+            <tbody><tr><td><a href="#">我的豆瓣</a></td></tr>
+            <tr><td><a target="_blank" href="#">我的帐号</a></td></tr>
+            <tr><td><a href="/group/logout">退出</a></td></tr>
+         </tbody></table>
+       </div>
+
+       </li>
+	   {%else%}
+	   <li><a href="/group/login">登录</a></li>
+	   <li><a href="/group/join">注册</a></li>
+	   <li></li>
+	   {%endif%}
+     </ul>
+</div>
+
+    <div class="top-nav-reminder">
+        <a href="/notification/" class="lnk-remind">提醒
+        </a>
+    <div id="top-nav-notimenu" class="more-items">
+      <div class="bd">
+          <p>加载中...</p>
+      </div>
+    </div>
+    </div>
+    
+
+    <div class="global-nav-items">
+      <ul>
+          
+            
+            <li>
+              <a href="#">豆瓣</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">读书</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">电影</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">音乐</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">同城</a>
+            </li>
+          
+            
+            <li class="on">
+              <a href="/group/">群组</a>
+            </li>
+          
+            
+            <li>
+              <a href="" target="_blank">阅读</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">豆瓣FM</a>
+            </li>
+          
+            <li>
+              <a href="#" class="bn-more"><span>更多</span></a>
+
+            </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="db-nav-group" class="nav">
+  <div class="nav-wrap">
+  <div class="nav-primary">
+    <div class="nav-logo">
+      <a href="/group/">群组</a>
+    </div>
+
+    <div class="nav-items">
+    <ul>
+      <li><a href="/group/mygroup/">我的群组</a></li> 
+      <li><a href="/group/explore">发现群组</a></li>
+      <li><a href="/group/explore_topic">发现话题</a></li>
+   </ul>
+   </div>
+
+    <div class="nav-search">
+      <form id="form" action="/group/search" method="get">
+        <fieldset>
+          <legend>搜索：</legend>
+          
+          <input type="hidden" name="cat" value="1019">
+          <label for="inp-query">群组、话题</label>
+          <div class="inp"><input id="inp-query" name="q" size="22" maxlength="60" value=""></div>
+          <div class="inp-btn"><input type="submit" value="搜索"></div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+    <div id="wrapper">
+     
+    <div id="content">
+        
+    <h1>
+    {{topic.0.name}}
+</h1>
+
+    <div class="grid-16-8 clearfix">
+        
+        
+        <div class="article">
+	  
+    
+    <div class="topic-content clearfix">
+        <div class="user-face">
+            <a href="#"><img class="pil" src="/static/images/user_normal.jpg" alt="{{topic.0.creator.nickname}}"></a>
+        </div>
+        <div class="topic-doc">
+            <h3>
+                <span class="from">来自: <a href="#">{{topic.0.creator.nickname}}</a></span>
+                <span class="color-green">{{topic.0.create_time|date:'Y-m-d H:i:s'}}</span>
+            </h3>
+
+            
+            <div id="link-report">
+
+              <div class="topic-content">
+                          
+                         <!-- <p>{{topic.0.content|safe|linebreaks|removetags:"script"}}</p>-->
+						 <p>{{topic.0.get_topic_content|safe|linebreaks|removetags:"script"}}</p>
+						 <p>
+							{%for im in topic.0.get_topic_images%}
+								<img src="/media/upload/{{im}}"><br/>
+							{%endfor%}
+						 </p>
+
+              </div>
+
+              <div class="topic-opt clearfix">
+				{% if user.is_authenticated %}
+					{%if user == topic.0.group.creator %}
+						<span class="fleft">&gt;&nbsp;<a rel="nofollow" href="/group/topic/{{topic.0.id}}?action=edit">修改</a></span>
+                      <span class="fleft">&gt;&nbsp;<a rel="nofollow" href="/group/topic/{{topic.0.id}}/admin_remove" class="j remove-dialog-confirm" title="一次删除{{topic.0.creator.nickname}}的发言以及所有回应">删除</a></span>
+					  {%if topic.0.is_top%}
+						<span class="fleft">&gt;&nbsp;<a rel="nofollow" href="/group/topic/{{topic.0.id}}?action=unsticky">取消置顶</a></span>
+					  {%else%}
+						<span class="fleft">&gt;&nbsp;<a rel="nofollow" href="/group/topic/{{topic.0.id}}?action=sticky">置顶</a></span>
+					  {%endif%}
+					  
+					{% elif user == topic.0.creator %}
+						<span class="fleft">&gt;&nbsp;<a rel="nofollow" href="/group/topic/{{topic.0.id}}?action=edit">修改</a></span>
+					{%endif%}
+						
+                {%endif%}     
+                      &nbsp;
+                  &nbsp; &nbsp;
+
+
+              </div>
+			  
+            <div style="text-align:right;"><a class="topicreport" data-id="{{topic.0.id}}" data-cid="0" rel="nofollow" href="javascript:void(0)">举报</a></div></div>
+            
+<script type="text/javascript" src="/static/js/packed_report_dialog4343976049.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/packed_report_dialog1246768821.css">
+
+        </div>
+
+        <div class="sns-bar" id="sep">
+            <div class="sns-bar-rec">
+                
+                    <script>
+                    var DoubanShareMenuList = [ 'renren', 'sina', 'qzone', 'tx', 'qqim' ];
+                    </script>
+                       
+    <span class="rec" id="Topic-38131596">
+        <a href="#/group/topic/38131596/#" data-type="Topic" data-url="#/group/topic/38131596/" data-desc="" data-title="【{{topic.0.name}}】{{topic.0.content}}" data-pic="" class="bn-sharing ">分享到</a> &nbsp;&nbsp;
+    </span>
+    <script>
+    var cache_url = cache_url || {};
+    (function(u){ if(cache_url[u]){ return; } cache_url[u] = true; Do(function(){$.getScript(u);}); })('http://img3.douban.com/js/lib/packed_sharebutton8478494727.js');
+    </script>
+
+    <script>
+    var rec_url = 'http://shuo.douban.com/!service/widgets/share?',
+        num_url = 'http://api.douban.com/shuo/urls/info?', //TODO
+        comments_url = 'http://shuo.douban.com/!service/widgets/urlinfo?';
+    </script>
+    <script type="text/javascript" src="/static/js/packed_dshare3165349252.js"></script>
+
+<div class="rec-sec">
+
+    <span class="rec">
+</span>
+</div>
+
+            </div>
+        </div>
+
+    </div>
+
+<div class="tabs" id="reviews">
+  <a href="/group/topic/{{topic.0.id}}#sep" class="on">回复</a>
+  <a href="/group/topic/{{topic.0.id}}?action=ding" id="ding" {%if voteid|add:"0" != topic.0.id %}class="on" {%else%}onclick="return false" {%endif%}>顶({{topic.0.ilike}})</a>
+  <a href="/group/topic/{{topic.0.id}}?action=cai" id="cai" {%if voteid|add:"0" != topic.0.id %}class="on" {%else%}onclick="return false" {%endif%}>踩({{topic.0.dislike}})</a>
+
+        <span style="float:right">
+            <a href="/group/topic/{{topic.0.id}}?author={{topic.0.creator}}#sep">只看楼主</a>
+        </span>
+</div>
+                
+    <ul class="topic-reply" id="comments">
+	{%for rep in reply%}
+		<li class="clearfix comment-item" id="457982999" data-cid="{{rep.id}}">
+			<div class="user-face">
+				<a href="/group/people/39376895/"><img class="pil" src="/media/{{rep.creator.image}}" alt="{{rep.0.creator.nickname}}"></a>
+			</div>
+			<div class="reply-doc content" style="padding-left:0px;">
+				<div class="bg-img-green">
+				  <h4>
+						<a href="/group/people/39376895/">{{rep.creator.nickname}}</a>
+						<span class="pubtime">{{rep.create_time|date:'Y-m-d H:i:s'}}</span>
+					</h4>
+				</div>
+				<p>{{rep.content|safe|linebreaks|removetags:"script" }}</p>
+
+				<div class="operation_div1" style="text-align:right;" id="rep{{rep.id}}">
+					{% if user.is_authenticated %}
+						{%if user == topic.0.group.creator %}
+							<a rel="nofollow" href="javascript:void(0);" data-id="{{rep.id}}" class="lnk-delete-comment" title="noconform" style="display: inline;">删除</a>
+						{%endif%}
+					<a href="javascript:void(0);" class="lnk-reply" data-id="{{rep.content}}" data-cid="{{rep.creator.nickname}}">回复</a>&nbsp&nbsp
+					{%endif%}
+					<a class="topicreport" rel="nofollow" href="javascript:void(0)" data-id="{{rep.id}}" data-cid='1'>举报</a>
+
+					<!--<a rel="nofollow" href="javascript:void(0);" data-cid="457982999" class="lnk-delete-comment" title="真的要删除大耳朵耳朵大的发表话题?">删除</a>
+					<div class="comment-reports"><a rel="nofollow" href="javascript:void(0)">举报</a></div>-->
+				</div>
+			</div>
+		</li>
+	{%endfor%}
+    </ul>
+
+<script type="text/javascript" src="/static/js/packed_report_dialog4343976049.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/packed_report_dialog1246768821.css">
+    {%if user in topic.0.group.member.all%}
+    <h2>
+        你的回复    
+    </h2>
+
+        <div class="txd comment-form">
+            <form name="comment_form" method="post" action="/group/topic/add_comment/{{topic.0.id}}">
+				<div class="reply-comment">
+                <a href="close_reply" class="lnk-close">x</a>
+                <input type="hidden" name="ref_user" value=""/>
+                <input type="hidden" name="ref_content" value=""/>
+                  <p id="quote"></p>
+                </div>
+			{% csrf_token %}
+            <textarea id="last" name="rv_comment" rows="8" cols="54"></textarea><br>
+            <input type="hidden" name="start" value="0">
+
+            <span class="bn-flat-hot rr">
+                <input name="submit_btn" type="submit" value="加上去">
+            </span>
+
+			</form>
+		</div>
+		{%else%}
+		<p class="group-tip pl" align="right">只有群组成员才能发表话题 <a href="/group/{{topic.0.group}}/?action=join" id="joingroupbtn" name="199966">&gt; 加入这个群组</a></p>
+		{%endif%}
+	</div>
+        <div class="aside">
+
+<div id="g-side-info-member" class="side-reg">
+  <div class="bd">
+      <div class="group-item">
+          <div class="pic">
+               <a href="/group/show/{{topic.0.group}}"><img src="/media/{{topic.0.group.image}}" class="pil"></a>
+          </div>
+          <div class="info">
+              <div class="title">
+				  <a href="/group/show/{{topic.0.group}}">{{topic.0.group}}</a>
+              </div>
+		{%if user in topic.0.group.member.all %}
+          <div class="member-info1">我是群组的成员</div>
+		 
+		{%else%}
+			<i> {{topic.0.group.member.all|length}} <i> 人聚集在这个群组
+			 <p>{{topic.0.group.description|truncatechars:10}}</p>
+		{%endif%}
+      </div>
+    </div>
+  </div>
+  <div class="ft">
+      <div class="member-status">
+        
+        <!--<a href="/group/show/{{topic.0.group}}/?action=join&redir=/group/topic/{{topic.0.id}}" class="bn-join">加入群组</a>-->
+      </div>
+  </div>
+
+</div>
+
+    <div class="mod">
+        
+    <h2>
+        最新话题
+            
+            <span class="pl">&nbsp;(
+                    <a href="/group/show/{{topic.0.group}}/#topics">更多</a>
+                ) </span>
+    </h2>
+
+        <div class="hot-topics">
+          <ul>
+			{%for nt in new_topic%}
+                <li><a href="/group/topic/{{nt.id}}" title="{{nt.name}}">{{nt.name}}</a> &nbsp;
+                <span class="pl">({{nt.creator.nickname}}) </span></li>
+			{%endfor%}
+
+        </ul>
+        </div>
+      </div>
+
+        <div id="dale_group_topic_new_top_right2" cmdty="true" cmdty-tpl="text" page-kind="1013" page-oid="38131596"><iframe id="dale_group_topic_new_top_right2_frame" frameborder="0" scrolling="no" style="overflow: hidden; margin: 0px 0px 20px;" width="300" height="190"></iframe></div>
+
+        </div>
+        <div class="extra">
+
+
+        </div>
+    </div>
+    </div>
+
+        
+    <div id="footer">
+        
+
+<span id="icp" class="fleft gray-link">
+    © 2005－2013 douban.com, all rights reserved
+</span>
+
+<span class="fright">
+    <a href="#/about">关于豆瓣</a>
+    · <a href="#/jobs">在豆瓣工作</a>
+    · <a href="#">联系我们</a>
+    · <a href="#">免责声明</a>
+    
+    · <a href="#/help/group">帮助中心</a>
+    · <a href="#" target="_blank">开发者</a>
+    · <a href="#/mobile/group">手机群组</a>
+    · <a href="#/partner/">豆瓣广告</a>
+</span>
+
+
+    </div>
+
+    </div>
+    
+<div class="back-to-top" style="left: 850px;">
+    <a href="#/group/topic/38131596/#">↑回顶部</a>
+</div>
+
+<div id="report_value" style="display:none;">
+<ul>
+    <li>  
+    <label>
+        <input type="radio" name="reason" value="0" checked=""> 广告或垃圾信息
+    </label>
+    </li>
+    <li>  
+    <label>
+        <input type="radio" name="reason" value="1"> 色情、淫秽或低俗内容
+    </label>
+    </li>
+    <li>  
+    <label>
+        <input type="radio" name="reason" value="2"> 激进时政或意识形态话题
+    </label>
+    </li>
+    <li>
+    <label>
+        <input type="radio" name="reason" value="3"> 其他原因
+    </label>
+    </li>
+</ul>
+</div>
+
+<script>
+Do(function(){var h=$(window);var k=$(document);var l;var a=$(".back-to-top");var b=$(".topic-reply");var g;var i=$("#content");var d=$.browser.msie&&$.browser.version==="6.0";var f=function(n){if(!f.cache){f.cache=[]}if(f.cache[n]){return}var m=new Date;(new Image()).src="/stat.html?source=group&action=back_top&iden="+n+"&month="+(m.getMonth()+1)+"&day="+m.getDate()+"&timestamp="+(+new Date);f.cache[n]=1};var e=function(){if(e.value){return e.value}return i.offset().top+i.height()};h.load(function(){e.value=e()});var c=function(m){if(m+g>=e()){a.css({position:"absolute",bottom:"",top:e()-a.outerHeight()+40})}else{if(!d){a.css({position:"fixed",top:"",bottom:0})}}a.show().find("a").stop().animate({top:0});f("show")};var j=function(){a.hide().find("a").css("top",40)};h.resize(function(){g=h.height();a.css("left",b.offset().left+b.width()+60);l=k.height()/g>3?Math.max(2*g,$(".aside").height()):0});h.trigger("resize");h.scroll((function(){var m;return function(){if(m){clearTimeout(m)}setTimeout(function(){if(l===0){return}var n=k.scrollTop();if(n>l){c(n)}else{j()}},100)}})());a.find("a").click(function(m){m.preventDefault();k.scrollTop(0);f("use")});if(d){h.scroll(function(){if(k.scrollTop()+g>=e()){return}a.css("top",k.scrollTop()+g-a.height()+40)})}});
+Do(function() {
+  function removeComment(obj, cid){
+    $.post_withck("/group/topic/{{topic.0.id}}/remove_comment",{cid:cid,csrf_token:"{{csrf_token}}"}, function(d){
+		switch(d){
+			case "0":
+				location.reload()
+				break;
+			case "-1":
+				alert("need login")
+				break;
+			case "-2":
+				alert("args error")
+				break;
+		}
+      /*d = $.parseJSON(d);
+      if(d.r == 0){
+        if(d.manager){
+          window.location = d.url;
+        }else{
+          location.reload();
+        }
+      }else{
+        alert(d.err_msg);
+      }*/
+    });
+  }
+
+  $('.reply-quote .toggle-reply').click(function(e) {
+    e.preventDefault();
+    var el = $(this);
+    el.prevAll('span').toggle();
+    el.find('span').toggle();
+  });
+
+$('.lnk-delete-comment').click(function(){
+    var o = $(this);
+    var comment = o.closest('.comment-item');
+    var cid = $(this).attr("data-id");
+    if($(this).attr('title') !== 'noconform'){
+      if(confirm($(this).attr('title'))){
+      removeComment(comment, cid);
+     }
+    }else{
+      removeComment(comment, cid);
+    }
+    return false;
+  });
+
+  /* common dialog generator */
+  function generate_group_prompt_dialog(dui_config){
+    var prompt_dlg = dui.Dialog({
+        title: (dui_config.title? dui_config.title: '操作提示'),
+        content: (dui_config.content? dui_config.content: '操作内容'),
+        width: (dui_config.width? dui_config.width: 400),
+        buttons: [
+            {text: '确定', method: function(){} }
+        ]
+    });
+    var dui_dialog_ft_html = function(dui_config){
+        if(dui_config.callback){
+            $('.dui-dialog').delegate('.btn-ok', 'click', function(){
+                dui_config.callback();
+            });
+        }
+        $('.dui-dialog').delegate('.btn-cancel', 'click', function(){
+            $(".dui-dialog").hide();
+        });
+        //return '<div><span class="dui-dialog-prompt"><label><input type="checkbox" ' + (dui_config.checked? 'checked=checked ': '') + '/>' + dui_config.prompt + '</label></span><span class="bn-flat btn-cancel">取消</span><span class="bn-flat btn-ok">确定</span></div>';
+        return '<div><span class="dui-dialog-prompt"><label>' + '</label></span><span class="bn-flat btn-cancel">取消</span><span class="bn-flat btn-ok">确定</span></div>';
+    };
+    prompt_dlg.open();
+    prompt_dlg.node.find('.ft').html(dui_dialog_ft_html(dui_config));
+  }
+  /* common over */
+  $('.ban-dialog-confirm').click(function(){
+    var ban_action = function(){
+        var ban_url = $('.ban-dialog-confirm').attr('href');
+        var remove_topic_url = $('.remove-dialog-confirm').attr('href');
+        console.log(ban_url);
+        $.post(ban_url, {timestamp: (new Date()).getTime()}, function(d){
+            $('.ban-dialog-confirm').closest('span').addClass('pl').html('已封禁');
+        });
+        if($('.dui-dialog-prompt input').attr('checked')){
+            window.location = remove_topic_url;
+        }
+        $('.dui-dialog').hide();
+    };
+    generate_group_prompt_dialog({content: '真的要把爱生病的小猫永久封禁？', prompt:'同时删除此话题', checked: true, callback: ban_action});
+    return false;
+  });
+  $('.remove-dialog-confirm').click(function(){
+    var remove_action = function(){
+        var ban_url = $('.ban-dialog-confirm').attr('href');
+        var remove_topic_url = $('.remove-dialog-confirm').attr('href');
+        if($('.dui-dialog-prompt input').attr('checked')){
+            $.post(ban_url, {timestamp: (new Date()).getTime()});
+        }
+        window.location = remove_topic_url;
+    };
+    //generate_group_prompt_dialog({content: '真的要删除群组话题？', prompt:'同时封禁该成员', callback: remove_action});
+    generate_group_prompt_dialog({content: '真的要删除群组话题及所有回应？', callback: remove_action});
+    return false;
+  });
+});
+</script>
+<script type="text/javascript" src="/static/js/6cc45d9af3ccd267.js"></script>
+</body></html>

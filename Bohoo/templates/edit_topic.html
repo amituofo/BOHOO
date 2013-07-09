@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="ua-windows ua-webkit"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>
+		 修改{{topic.0.name}}
+       
+</title>
+    
+    
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
+    
+    <script>var _head_start = new Date();</script>
+    <script src="/static/js/packed_jquery.min6301986802.js"></script>
+    <script src="/static/js/packed_douban2999726295.js"></script>
+	<script src="/static/js/jquery-1.8.0.min.js"></script>
+	<script src="/static/js/jquery.artDialog.js?skin=twitter"></script>
+    <script src="/static/js/jquery.uploadify.min.js"></script>
+    <link href="/static/css/packed_douban9859329871.css" rel="stylesheet" type="text/css">
+	 <link href="/static/css/uploadify.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+    
+        
+    .group-form .item { margin-top:10px; }
+    .group-form label { float:left;width:52px;font-family:arial,sans-serif; }
+    .group-form .toolbar,
+    .group-form .item-error,
+    .group-form .item-bns { margin-left:52px;zoom:1; }
+    .group-form .item-error { color:#f20; }
+    .group-form textarea { width:520px;font:13px/1.62 arial,sans-serif; }
+    .group-form .inp { border:1px solid #ccc;padding:2px; }
+    .group-form .inp-title { width:320px; }
+    .group-form textarea:focus,
+    .group-form .inp:focus { border-color:#aaa; }
+    .group-form .item-thumb-list { margin-top:20px; }
+    .group-form .item-bns .bn-flat { margin-right:40px; }
+    .item-thumb-list label { width:auto; }
+    
+.pop_win { padding:0;border:1px solid #c8c8c8; }
+.pop_win .panel { width:450px;padding:10px 20px 20px;text-align:center; }
+.pop_win_bg { background-color:#999;
+-moz-border-radius:8px;
+-webkit-border-radius:8px;
+border-radius:8px;
+}
+.thumblst { width:580px;min-width:580px;}
+.thumblst .details textarea { width:90%; }
+.rectitle { background:#ebf5eb;
+-webkit-border-top-left:6px;
+-webkit-border-top-right-radius:6px;
+-moz-border-radius-topleft:6px;
+-moz-border-radius-topright: 6px
+border-top-left-radius:6px;
+border-top-right-radius:6px;
+}
+.pop_win .waiting { position:absolute;display:none;top:50%;left:50%;margin-left:-50px;width:100px;text-align:center;color:#060;font-size:14px; }
+.bn-flat input { line-height:1.2;margin:0; }
+
+
+    label .label { display:none; }
+	.error{color: #f20;}
+.pil {
+height: 48px;
+width: 48px;
+}
+    </style>
+    
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script>
+
+    $(document).ready(function() {
+        var groupForm = $('.group-form');
+        $('textarea', groupForm).keydown(function(e) {
+            var keyCode = e.keyCode;
+            if (keyCode === 10 || keyCode === 13 && e.ctrlKey) {
+                $('#post-btn', groupForm).click();
+            }
+        });
+		
+		$(document).ready(function(){
+		$("#inp-query").click(function(){
+			console.log($("label[for='inp-query']"))
+			$("label[for='inp-query']")[0].innerText = ""
+		})
+	})
+		
+		$.ajaxSetup({
+		  data: {csrfmiddlewaretoken: "{{csrf_token}}"  },
+		});
+		
+		$(".delete_img").click(function(){
+			var ims = $("#image_names").val()
+			var im = $(this).attr("data-id")
+			if(confirm("确定要删除此张图片?")){
+				var img_name = $(this).prev()[0].src.split("/").pop()
+				console.log($(this).prev()[0].src.split("/").pop())
+				/*art.dialog({
+					content: '删除中...',
+					ok: function () {
+						
+						
+					}
+				});*/
+				var jqxhr = $.post("/group/del_image/",{ img_name:img_name })
+					.done(function(data) {
+						//alert("success"+data);
+						if(data == '-1'){
+							alert("need login")
+							return false;
+						}else if(data == -2){
+							alert("delete null?")
+							return false;
+						}else if(data == -3){
+							alert("error on delete!")
+							return false;
+						}else if(data == 0){
+							alert("删除成功！")
+						}
+						
+						
+					});
+				
+				$(this).prev().remove()
+				$(this).remove()
+				
+				$('#image_names').val("")
+				$("img.aimg").each(function(){
+					//alert(this.src.split("/")[-1])
+					//console.log(this.src.split("/").pop())
+					$('#image_names').val($('#image_names').val() + this.src.split("/").pop()+"|");
+				});
+				
+				$("#display_image img").each(function(){
+					//console.log(this.src.split("/").pop())
+					$('#image_names').val($('#image_names').val() + this.src.split("/").pop()+"|");
+				})
+				
+			}
+		})
+    });
+	
+	
+	$(function() {
+		$('#file_upload').uploadify({
+			'formData'         : {'csrfmiddlewaretoken' : '{{csrf_token}}'},
+			'swf'      : '/static/uploadify.swf',
+			'auto'         : false,
+			'fileSizeLimit' : 1024,
+			'simUploadLimit' :3, 
+			'buttonText' :'图片上传',
+			'fileTypeExts'  : '*.jpg;*.jpeg;*.gif;*.png', 
+			'fileExt':'*.gif;*.jpg;*.jpeg;*.png',
+			'fileDesc':'不超过1M的图片 (*.gif;*.jpg;*.png)',
+			'uploader' : '/group/upload-images/',
+			// 'uploadScript'     : '/uploadifive.php'
+			'onUploadComplete' : function(file, data,response) {
+				//console.log(file)
+			},
+			 'onUploadSuccess' : function(data,response) {
+				if(response == -3){
+					alert("只能上传图片格式")
+				}else if(response == -2){
+					alert("上传内容为空！")
+				}else{
+					alert("上传成功")
+					console.log(data)
+					var img = document.createElement("img")
+					img.src = "/media/upload/"+response
+					//$("#image_names").val(response)
+					$('#image_names').val($('#image_names').val() + response+"|");
+					$(img).css("width","250")
+					$(img).css("height","200")
+					$("#display_image").append(img)
+					
+				}
+			}
+			// Put your options here
+		});
+		
+	});
+</script>
+
+
+    <link rel="shortcut icon" href="http://img3.douban.com/favicon.ico" type="image/x-icon">
+<script src="/static/js/ga.js" async="true"></script></head>
+<body>
+  
+    
+    <script type="text/javascript">var _body_start = new Date();</script>
+
+<div id="db-global-nav" class="global-nav">
+  <div class="bd">
+
+<div class="top-nav-info">
+    <span class="perf-metric"><!-- _performtips_ --></span>
+    
+     <ul>
+       <li><a href="#">豆邮</a></li>
+       <li class="nav-user-account">
+       <a target="_blank" href="#" class="bn-more" rel="off"><span>{{user.nickname}}的帐号</span><span class="arrow"></span></a>
+       <div class="more-items">
+      <table cellpadding="0" cellspacing="0">
+            <tbody><tr><td><a href="#">我的豆瓣</a></td></tr>
+            <tr><td><a target="_blank" href="#">我的帐号</a></td></tr>
+            <tr><td><a href="/group/logout">退出</a></td></tr>
+         </tbody></table>
+       </div>
+
+       </li>
+     </ul>
+</div>
+
+
+    <div class="top-nav-reminder">
+        <a href="#" class="lnk-remind">提醒
+        </a>
+    <div id="top-nav-notimenu" class="more-items">
+      <div class="bd">
+          <p>加载中...</p>
+      </div>
+    </div>
+    </div>
+    
+
+    <div class="global-nav-items">
+      <ul>
+          
+            
+            <li>
+              <a href="#/">豆瓣</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">读书</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">电影</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">音乐</a>
+            </li>
+          
+            
+            <li>
+              <a href="#">同城</a>
+            </li>
+          
+            
+            <li class="on">
+              <a href="/group/">群组</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">阅读</a>
+            </li>
+          
+            
+            <li>
+              <a href="#" target="_blank">豆瓣FM</a>
+            </li>
+          
+            <li>
+              <a href="#" class="bn-more"><span>更多</span></a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="db-nav-group" class="nav">
+  <div class="nav-wrap">
+  <div class="nav-primary">
+    <div class="nav-logo">
+      <a href="/group/">群组</a>
+    </div>
+
+    <div class="nav-items">
+    <ul>
+      <li><a href="/group/mygroup/">我的群组</a></li> 
+      <li><a href="/group/explore">发现群组</a></li>
+      <li><a href="/group/explore_topic">发现话题</a></li>
+   </ul>
+   </div>
+
+    <div class="nav-search">
+      <form id="form" action="/group/search" method="get">
+        <fieldset>
+          <legend>搜索：</legend>
+          
+          <input type="hidden" name="cat" value="1019">
+          <label for="inp-query">群组、话题</label>
+          <div class="inp"><input id="inp-query" name="q" size="22" maxlength="60" value=""></div>
+          <div class="inp-btn"><input type="submit" value="搜索"></div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+ 
+    <div id="wrapper">
+    
+    <div id="content">
+        
+   <!-- <h1>{{group.name}}发表话题</h1>-->
+    <h1>修改话题 {{topic.0.name}}</h1>
+
+    <div class="grid-16-8 clearfix">
+        
+        
+        <div class="article">
+	<p class="error">{{msg}}</p>
+    <form name="lzform" class="group-form" method="post" onsubmit="this.onsubmit=function(){return false}"><div style="display:none;"><input type="hidden" name="ck" value="3GkH"></div>
+		{% csrf_token %}
+        <div class="item">
+            <label>标题:</label>
+            <input class="inp inp-title" name="rev_title" type="text" size="50" maxlength="100" value="{{topic.0.name}}">
+        </div>
+
+        <div class="item toolbar">
+			<input type="file" name="file_upload" id="file_upload" /><br/>
+			<a href="javascript:$('#file_upload').uploadify('upload','*')">上传图片</a>
+			<div id="display_image"></div>
+			<input type="hidden" name="image_names" id="image_names"/>
+        </div>
+		{%for t in topic.0.get_topic_images%}
+			<img src="/media/upload/{{t}}" class="aimg"><a href="javascript:void(0)" data-id="{{t}}" class="delete_img">删除</a>
+			<script type="text/javascript">
+				$('#image_names').val($('#image_names').val() + "{{t}}"+"|");
+			</script>
+		{%endfor%}
+        <div class="item">
+            <label>
+                <span class="label">正文:</span>
+                
+                    &nbsp;
+            </label>
+            <textarea name="rev_text" rows="20" cols="55">{{topic.0.get_topic_content}}</textarea>
+        </div>
+
+        <div class="item">
+        </div>
+
+
+        <div class="item item-bns">
+            <span class="bn-flat"><input id="post-btn" name="rev_submit" type="submit" value="好了，改吧"></span>
+            <span class="bn-flat"><input name="rev_cancel" type="submit" value="撤消"></span>
+        </div>
+
+        <div id="thumblst" class="item item-thumb-list">
+        </div>
+    </form>
+
+
+	</div>
+        <div class="aside">
+            
+    <p><a href="/group/show/{{topic.0.group.name}}/">
+		{%if topic.0.group.image%}
+            <img src="/media/{{topic.0.group.image.url}}" class="pil" alt="{{group.name}}">
+		{%else%}
+			<img src="/static/images/user_normal.jpg" class="pil" alt="{{group.name}}">
+		{%endif%}
+    </a></p>
+
+
+    <p class="pl2">&gt; <a href="/group/show/{{topic.0.group.name}}/">回到{{topic.0.group.name}}</a></p>
+
+        </div>
+        <div class="extra">
+            
+        </div>
+    </div>
+    </div>
+
+        
+    <div id="footer">
+        
+
+<span id="icp" class="fleft gray-link">
+    © 2005－2013 douban.com, all rights reserved
+</span>
+
+<span class="fright">
+    <a href="#/about">关于豆瓣</a>
+    · <a href="#/jobs">在豆瓣工作</a>
+    · <a href="#/about?topic=contactus">联系我们</a>
+    · <a href="#/about?policy=disclaimer">免责声明</a>
+    
+    · <a href="#/help/group">帮助中心</a>
+    · <a href="" target="_blank">开发者</a>
+    · <a href="#/mobile/group">手机群组</a>
+    · <a href="#/partner/">豆瓣广告</a>
+</span>
+
+
+    </div>
+<script type="text/javascript" src="/static/js/6cc45d9af3ccd267.js"></script>
+    </div>
+</body></html>
